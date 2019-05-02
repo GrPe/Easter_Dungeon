@@ -5,12 +5,15 @@ using UnityEngine;
 public class StateMachine
 {
     private List<State> states;
-    public StateID CurrentStateID { get; private set; }
-    public State CurrentState { get; private set; }
+    private Stack<State> stateStack;
+
+    public State CurrentState { get => stateStack.Peek(); }
+    public StateID CurrentStateID { get => CurrentState.StateID; }
 
     public StateMachine()
     {
         states = new List<State>();
+        stateStack = new Stack<State>();
     }
 
     public void AddState(State s)
@@ -27,8 +30,7 @@ public class StateMachine
         if (states.Count == 0)
         {
             states.Add(s);
-            CurrentState = s;
-            CurrentStateID = s.StateID;
+            stateStack.Push(s);
             CurrentState.DoBeforeEntering();
             return;
         }
@@ -43,28 +45,6 @@ public class StateMachine
             }
         }
         states.Add(s);
-    }
-
-
-    public void DeleteState(StateID id)
-    {
-        // Check for NullState before deleting
-        if (id == StateID.NullStateID)
-        {
-            Debug.LogError("FSM ERROR: NullStateID is not allowed for a real state");
-            return;
-        }
-
-        // Search the List and delete the state if it's inside it
-        foreach (State state in states)
-        {
-            if (state.StateID == id)
-            {
-                states.Remove(state);
-                return;
-            }
-        }
-        Debug.LogError($"FSM ERROR: Impossible to delete state {id.ToString()}. It was not on the list of states");
     }
 
     public void PerformTransition(Transition trans)
@@ -86,15 +66,15 @@ public class StateMachine
         }
 
         // Update the currentStateID and currentState		
-        CurrentStateID = id;
         foreach (State state in states)
         {
-            if (state.StateID == CurrentStateID)
+            if (state.StateID == id)
             {
                 // Do the post processing of the state before setting the new one
                 CurrentState.DoBeforeLeaving();
 
-                CurrentState = state;
+                stateStack.Pop();
+                stateStack.Push(state);
 
                 // Reset the state to its desired condition before it can reason or act
                 CurrentState.DoBeforeEntering();
@@ -102,5 +82,22 @@ public class StateMachine
             }
         }
 
+    }
+
+    public void ReturnToPreviousState()
+    {
+        if(CurrentState.StateID == StateID.NullStateID)
+        {
+            Debug.LogError("FSM doesn't contain any state");
+            return;
+        }
+
+        if (stateStack.Count <= 1)
+        {
+            Debug.LogError("FSM cannot return to the previous state.");
+            return;
+        }
+
+        stateStack.Pop();
     }
 }
