@@ -8,3 +8,8 @@
 
 - Unity Particle Pack
 - Post Processing Stack
+- Unity NavMesh Components
+
+## State Machine
+
+![img](states.png)
