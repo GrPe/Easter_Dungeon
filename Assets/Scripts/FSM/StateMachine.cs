@@ -47,7 +47,7 @@ public class StateMachine
         states.Add(s);
     }
 
-    public void PerformTransition(Transition trans)
+    public void PerformTransition(Transition trans, bool saveOnStack = false)
     {
         // Check for NullTransition before changing the current state
         if (trans == Transition.NullTransition)
@@ -73,7 +73,7 @@ public class StateMachine
                 // Do the post processing of the state before setting the new one
                 CurrentState.DoBeforeLeaving();
 
-                stateStack.Pop();
+                if(!saveOnStack) stateStack.Pop();
                 stateStack.Push(state);
 
                 // Reset the state to its desired condition before it can reason or act
@@ -98,6 +98,10 @@ public class StateMachine
             return;
         }
 
+        CurrentState.DoBeforeLeaving();
+
         stateStack.Pop();
+
+        CurrentState.DoBeforeEntering();
     }
 }
