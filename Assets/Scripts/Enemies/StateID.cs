@@ -1,5 +1,10 @@
 ﻿
 public enum StateID
 {
-    NullStateID
+    NullStateID,
+    PatrolStateID,
+    ChasingStateID,
+    AttackStateID,
+    SearchStateID,
+    StunStateID
 }

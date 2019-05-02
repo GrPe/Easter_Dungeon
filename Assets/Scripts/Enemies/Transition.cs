@@ -1,5 +1,10 @@
 ﻿
 public enum Transition
 {
-    NullTransition
+    NullTransition,
+    StartChasingTransition,
+    StartAttackTransition,
+    StartSearchTransition,
+    StartPatrolTransition,
+    StunTransition
 }
