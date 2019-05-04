@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float rangeOfView = 2f;
     public float RangeOfView { get => rangeOfView; }
 
+    [SerializeField] private float attackRange = 1f;
+    public float AttackRange { get => attackRange; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -36,7 +39,7 @@ public class Enemy : MonoBehaviour
 
         //create all states
         PatrolState patrolState = new PatrolState(this, agent);
-        ChasingState chasingState = new ChasingState(this);
+        ChasingState chasingState = new ChasingState(this, agent);
         AttackState attackState = new AttackState(this);
         SearchState searchState = new SearchState(this);
         StunState stunState = new StunState(this);
@@ -59,6 +62,10 @@ public class Enemy : MonoBehaviour
         patrolState.OnAchiveTheTarget += GetNextTargetFromPatrolSystem;
         patrolState.OnFoundPlayer += FoundPlayer;
 
+        chasingState.OnPlayerLost += PlayerLost;
+        chasingState.OnAttack += Attack;
+        
+
         //add states to machine 
         stateMachine.AddState(patrolState);
         stateMachine.AddState(chasingState);
@@ -74,7 +81,22 @@ public class Enemy : MonoBehaviour
 
     private void FoundPlayer()
     {
+        stateMachine.PerformTransition(Transition.StartChasingTransition);
+    }
 
+    private void PlayerLost()
+    {
+        stateMachine.PerformTransition(Transition.StartSearchTransition);
+    }
+
+    private void Attack()
+    {
+        stateMachine.PerformTransition(Transition.StartAttackTransition);
+    }
+
+    public void Stun()
+    {
+        stateMachine.PerformTransition(Transition.StunTransition, true);
     }
 
     private void OnDrawGizmosSelected()
