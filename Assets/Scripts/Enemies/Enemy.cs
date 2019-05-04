@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
 
     public float StunTime { get; private set; }
 
+    [SerializeField] private float attackCooldown = 1.5f;
+    public float AttackCooldown { get => attackCooldown; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -67,6 +70,8 @@ public class Enemy : MonoBehaviour
         chasingState.OnPlayerLost += PlayerLost;
         chasingState.OnAttack += Attack;
 
+        attackState.OnPlayerOutOfAttackRange += PlayerOutOfAttackRange;
+
         stunState.OnFinishStun += FinishStun;
 
         //add states to machine 
@@ -94,10 +99,15 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        stateMachine.PerformTransition(Transition.StartAttackTransition);
+        stateMachine.PerformTransition(Transition.StartAttackTransition, true);
     }
 
     private void FinishStun()
+    {
+        stateMachine.ReturnToPreviousState();
+    }
+
+    public void PlayerOutOfAttackRange()
     {
         stateMachine.ReturnToPreviousState();
     }
@@ -112,5 +122,8 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, RangeOfView);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 }
