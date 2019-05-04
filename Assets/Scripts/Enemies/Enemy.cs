@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,30 +8,26 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    public GameObject player;
+
+    private NavMeshAgent agent;
     private StateMachine stateMachine;
     private PatrolSystem patrolSystem;
 
+    [SerializeField] private float rangeOfView = 2f;
+    public float RangeOfView { get => rangeOfView; }
+
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         patrolSystem = GetComponent<PatrolSystem>();
         InitStateMachine();
-
-
-        agent.SetDestination(patrolSystem.GetNextTarget()); //test
     }
     
 
     void Update()
     {
-        //test
-
-        if(agent.remainingDistance <= 0.1f)
-        {
-            agent.SetDestination(patrolSystem.GetNextTarget());
-        }
-
-        //end test
+        stateMachine.CurrentState.Act();
     }
 
     private void InitStateMachine()
@@ -38,7 +35,7 @@ public class Enemy : MonoBehaviour
         stateMachine = new StateMachine();
 
         //create all states
-        PatrolState patrolState = new PatrolState(this);
+        PatrolState patrolState = new PatrolState(this, agent);
         ChasingState chasingState = new ChasingState(this);
         AttackState attackState = new AttackState(this);
         SearchState searchState = new SearchState(this);
@@ -58,11 +55,31 @@ public class Enemy : MonoBehaviour
         searchState.AddTransition(Transition.StartPatrolTransition, StateID.PatrolStateID);
         searchState.AddTransition(Transition.StunTransition, StateID.StunStateID);
 
+        //add events to states
+        patrolState.OnAchiveTheTarget += GetNextTargetFromPatrolSystem;
+        patrolState.OnFoundPlayer += FoundPlayer;
+
         //add states to machine 
         stateMachine.AddState(patrolState);
         stateMachine.AddState(chasingState);
         stateMachine.AddState(attackState);
         stateMachine.AddState(searchState);
         stateMachine.AddState(stunState);
+    }
+
+    private Vector3 GetNextTargetFromPatrolSystem()
+    {
+        return patrolSystem.GetNextTarget();
+    }
+
+    private void FoundPlayer()
+    {
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, RangeOfView);
     }
 }
