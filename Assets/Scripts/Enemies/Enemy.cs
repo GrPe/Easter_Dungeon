@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 1.5f;
     public float AttackCooldown { get => attackCooldown; }
 
+    [SerializeField] private float searchTime = 5f;
+    public float SearchTime { get => searchTime; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -72,6 +75,8 @@ public class Enemy : MonoBehaviour
 
         attackState.OnPlayerOutOfAttackRange += PlayerOutOfAttackRange;
 
+        searchState.OnContinuePatrol += ContinuePatrol;
+
         stunState.OnFinishStun += FinishStun;
 
         //add states to machine 
@@ -110,6 +115,11 @@ public class Enemy : MonoBehaviour
     public void PlayerOutOfAttackRange()
     {
         stateMachine.ReturnToPreviousState();
+    }
+
+    public void ContinuePatrol()
+    {
+        stateMachine.PerformTransition(Transition.StartPatrolTransition);
     }
 
     public void Stun(float time)
