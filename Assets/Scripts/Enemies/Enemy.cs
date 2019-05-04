@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(PatrolSystem))]
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
     private StateMachine stateMachine;
+    private PatrolSystem patrolSystem;
 
     void Start()
     {
+        patrolSystem = GetComponent<PatrolSystem>();
         InitStateMachine();
+
+
+        agent.SetDestination(patrolSystem.GetNextTarget()); //test
     }
     
 
     void Update()
     {
-        
+        //test
+
+        if(agent.remainingDistance <= 0.1f)
+        {
+            agent.SetDestination(patrolSystem.GetNextTarget());
+        }
+
+        //end test
     }
 
     private void InitStateMachine()
