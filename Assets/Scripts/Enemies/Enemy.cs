@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackRange = 1f;
     public float AttackRange { get => attackRange; }
 
+    public float StunTime { get; private set; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -64,7 +66,8 @@ public class Enemy : MonoBehaviour
 
         chasingState.OnPlayerLost += PlayerLost;
         chasingState.OnAttack += Attack;
-        
+
+        stunState.OnFinishStun += FinishStun;
 
         //add states to machine 
         stateMachine.AddState(patrolState);
@@ -94,8 +97,14 @@ public class Enemy : MonoBehaviour
         stateMachine.PerformTransition(Transition.StartAttackTransition);
     }
 
-    public void Stun()
+    private void FinishStun()
     {
+        stateMachine.ReturnToPreviousState();
+    }
+
+    public void Stun(float time)
+    {
+        StunTime = time;
         stateMachine.PerformTransition(Transition.StunTransition, true);
     }
 
