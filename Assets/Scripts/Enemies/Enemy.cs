@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float searchTime = 5f;
     public float SearchTime { get => searchTime; }
 
+    [SerializeField] private float searchRange = 5f;
+    public float SearchRange { get => searchRange; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -49,7 +52,7 @@ public class Enemy : MonoBehaviour
         PatrolState patrolState = new PatrolState(this, agent);
         ChasingState chasingState = new ChasingState(this, agent);
         AttackState attackState = new AttackState(this);
-        SearchState searchState = new SearchState(this);
+        SearchState searchState = new SearchState(this, agent);
         StunState stunState = new StunState(this);
 
         //create transitions between states
