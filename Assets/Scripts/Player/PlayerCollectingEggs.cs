@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollectingEggs : MonoBehaviour
 {
     [SerializeField] private int collectedEggs = 0;
-    public int Score { get => collectedEggs; }
+    public int CollectedEggs { get => collectedEggs; }
+
+    public event Action OnCollectedEggs;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +17,7 @@ public class PlayerCollectingEggs : MonoBehaviour
         if(egg!= null)
         {
             collectedEggs++;
+            OnCollectedEggs();
         }
     }
 }

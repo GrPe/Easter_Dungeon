@@ -1558,11 +1558,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    isActive: 0
-    title: 
-    description: 
-    eggsToCollect: 0
-  player: {fileID: 0}
+    isActive: 1
+    title: Collect
+    description: Collect Eggs!
+    eggsToCollect: 3
+  player: {fileID: 323106306}
+  questInfo: {fileID: 91976971}
+  description: {fileID: 1369285880}
+  progress: {fileID: 507880004}
 --- !u!4 &1533102041
 Transform:
   m_ObjectHideFlags: 0
