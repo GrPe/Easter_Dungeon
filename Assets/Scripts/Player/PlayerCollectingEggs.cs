@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCollectingEggs : MonoBehaviour
 {
-    [SerializeField] private int score = 0;
-    public int Score { get => score; }
+    [SerializeField] private int collectedEggs = 0;
+    public int Score { get => collectedEggs; }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -13,7 +13,7 @@ public class PlayerCollectingEggs : MonoBehaviour
 
         if(egg!= null)
         {
-            score += egg.Score;
+            collectedEggs++;
         }
     }
 }
