@@ -10,8 +10,8 @@ public class GameOverManager : MonoBehaviour
 
     private void Start()
     {
-        gameOverMenu.gameObject.SetActive(false);
         player.OnPlayerDie += PlayerDie;
+        gameOverMenu.gameObject.SetActive(false);
     }
 
     private void PlayerDie()
