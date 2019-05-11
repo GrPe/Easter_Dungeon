@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class EndPoint : MonoBehaviour
 {
     [SerializeField] private GameObject particle;
@@ -24,6 +25,7 @@ public class EndPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && isActive == true)
         {
+            Debug.Log("Player WIn");
             OnPlayerWin?.Invoke();
         }
     }
