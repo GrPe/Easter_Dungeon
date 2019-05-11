@@ -25,7 +25,6 @@ public class EndPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && isActive == true)
         {
-            Debug.Log("Player WIn");
             OnPlayerWin?.Invoke();
         }
     }
