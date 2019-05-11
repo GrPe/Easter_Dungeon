@@ -7,6 +7,7 @@ public class AttackState : State
 {
     private Enemy enemy;
     private float currentCooldownTime = 0f;
+    private Player player;
 
     public event Action OnPlayerOutOfAttackRange;
 
@@ -14,6 +15,7 @@ public class AttackState : State
     {
         StateID = StateID.AttackStateID;
         this.enemy = enemy;
+        this.player = enemy.player.GetComponent<Player>();
     }
 
     public override void DoBeforeEntering()
@@ -40,7 +42,7 @@ public class AttackState : State
 
     private void Attack()
     {
-        Debug.Log("I hit player");
+        player?.DealDamage();
     }
 }
 
