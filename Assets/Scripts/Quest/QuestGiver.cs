@@ -12,12 +12,15 @@ public class QuestGiver : MonoBehaviour
     [SerializeField] private Image questInfo;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI progress;
-    
+
+    [SerializeField] private EndPoint endPoint;
 
     private void Start()
     {
         questInfo.gameObject.SetActive(quest.isActive);
         player.OnCollectedEggs += UpdateUI;
+        player.OnCollectedEggs += UpdateEndPoint;
+
         description.SetText(quest.description);
         progress.SetText($"{player.CollectedEggs}/{quest.eggsToCollect}");
     }
@@ -25,5 +28,13 @@ public class QuestGiver : MonoBehaviour
     private void UpdateUI()
     {
         progress.SetText($"{player.CollectedEggs}/{quest.eggsToCollect}");
+    }
+
+    private void UpdateEndPoint()
+    {
+        if(player.CollectedEggs >= quest.eggsToCollect)
+        {
+            endPoint.Activate();
+        }
     }
 }
