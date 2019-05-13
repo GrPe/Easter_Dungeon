@@ -10,6 +10,7 @@
 - Post Processing Stack
 - Unity NavMesh Components
 - 3D Scifi Kit Starter Kit by Creepy Cat
+- SCI-FI Barrels 40 Sample by 256PX
 
 ## State Machine
 
