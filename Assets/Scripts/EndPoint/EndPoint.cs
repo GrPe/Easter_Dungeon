@@ -15,10 +15,7 @@ public class EndPoint : MonoBehaviour
     {
         isActive = true;
 
-        if(particle != null)
-        {
-            Instantiate(particle, gameObject.transform);
-        }
+        particle?.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
