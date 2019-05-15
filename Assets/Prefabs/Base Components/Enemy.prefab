@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  rangeOfView: 3
-  attackRange: 1
+  rangeOfView: 5
+  attackRange: 2
   attackCooldown: 1.5
   searchTime: 7
-  searchRange: 4
+  searchRange: 7
