@@ -11,6 +11,11 @@ public class EndPoint : MonoBehaviour
 
     public event Action OnPlayerWin;
 
+    private void Start()
+    {
+        particle?.SetActive(false);
+    }
+
     public void Activate()
     {
         isActive = true;
