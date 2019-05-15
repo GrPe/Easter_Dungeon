@@ -11,14 +11,16 @@ public class EndPoint : MonoBehaviour
 
     public event Action OnPlayerWin;
 
+    private void Start()
+    {
+        particle?.SetActive(false);
+    }
+
     public void Activate()
     {
         isActive = true;
 
-        if(particle != null)
-        {
-            Instantiate(particle, gameObject.transform);
-        }
+        particle?.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
