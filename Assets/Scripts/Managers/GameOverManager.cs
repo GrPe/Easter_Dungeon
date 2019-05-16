@@ -28,6 +28,7 @@ public class GameOverManager : MonoBehaviour
 
     public void OnButtonRetryClick()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
