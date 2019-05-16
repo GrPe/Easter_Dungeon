@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
@@ -27,6 +28,6 @@ public class GameOverManager : MonoBehaviour
 
     public void OnButtonRetryClick()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
