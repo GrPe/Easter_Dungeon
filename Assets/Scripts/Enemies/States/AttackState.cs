@@ -42,6 +42,8 @@ public class AttackState : State
 
     private void Attack()
     {
+        var obj = GameObject.Instantiate(enemy.attackParticle, player.transform.position, Quaternion.identity);
+        GameObject.Destroy(obj, 1f);
         player?.DealDamage();
     }
 }

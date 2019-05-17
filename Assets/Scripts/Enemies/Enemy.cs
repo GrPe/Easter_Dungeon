@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
+    public GameObject attackParticle;
 
     private NavMeshAgent agent;
     private StateMachine stateMachine;
