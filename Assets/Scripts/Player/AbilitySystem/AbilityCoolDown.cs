@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class AbilityCoolDown : MonoBehaviour
 {
-    public string abilityButtonAxisName = "Fire1";
-    public Image darkMask;
-    public Text coolDownTextDisplay;
-
+    [SerializeField] private KeyCode abilityKey;
+    [SerializeField] private Image darkMask;
     [SerializeField] private Ability ability;
-    [SerializeField] private GameObject weaponHolder;
-    private Image myButtonImage;
+    [SerializeField] private GameObject player;
+
+    private Image abilityImage;
     private float coolDownDuration;
     private float nextReadyTime;
     private float coolDownTimeLeft;
@@ -19,29 +18,27 @@ public class AbilityCoolDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialize(ability, weaponHolder);
+        Initialize(ability, player);
     }
 
-    public void Initialize(Ability selectedAbility, GameObject weaponHolder)
+    public void Initialize(Ability ability, GameObject player)
     {
-        ability = selectedAbility;
-        myButtonImage = GetComponent<Image>();
-        myButtonImage.sprite = ability.Sprite;
-        darkMask.sprite = ability.Sprite;
-        coolDownDuration = ability.BaseCoolDown;
-        ability.Initialize(weaponHolder);
+        this.ability = ability;
+        abilityImage = GetComponent<Image>();
+        abilityImage.sprite = this.ability.Sprite;
+        darkMask.sprite = this.ability.Sprite;
+        coolDownDuration = this.ability.BaseCoolDown;
+        this.ability.Initialize(player);
         AbilityReady();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool coolDownCompleted = (Time.time > nextReadyTime);
-
-        if(coolDownCompleted)
+        if(Time.time > nextReadyTime)
         {
             AbilityReady();
-            if (Input.GetButtonDown(abilityButtonAxisName))
+            if (Input.GetKeyDown(abilityKey))
             {
                 ButtonTriggered();
             }
@@ -54,7 +51,6 @@ public class AbilityCoolDown : MonoBehaviour
 
     private void AbilityReady()
     {
-        coolDownTextDisplay.enabled = false;
         darkMask.enabled = false;
     }
 
@@ -62,7 +58,6 @@ public class AbilityCoolDown : MonoBehaviour
     {
         coolDownTimeLeft -= Time.deltaTime;
         float roundedCd = Mathf.Round(coolDownTimeLeft);
-        coolDownTextDisplay.text = roundedCd.ToString();
         darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
     }
 
@@ -71,10 +66,7 @@ public class AbilityCoolDown : MonoBehaviour
         nextReadyTime = coolDownDuration + Time.deltaTime;
         coolDownTimeLeft = coolDownDuration;
         darkMask.enabled = true;
-        coolDownTextDisplay.enabled = true;
 
-        abilitySource.clip = ability.Sound;
-        abilitySource.Play();
         ability.TriggerAbility();
     }
 }
