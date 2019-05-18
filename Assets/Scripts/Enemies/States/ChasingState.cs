@@ -26,11 +26,13 @@ public class ChasingState : State
 
     public override void Act()
     {
-        if (Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.AttackRange)
+        if (Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.AttackRange && 
+            !enemy.playerSneaking.IsHidden)
         {
             OnAttack();
         }
-        else if (Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.RangeOfView)
+        else if (Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.RangeOfView && 
+            !enemy.playerSneaking.IsHidden)
         {
             agent.SetDestination(enemy.player.transform.position);
         }

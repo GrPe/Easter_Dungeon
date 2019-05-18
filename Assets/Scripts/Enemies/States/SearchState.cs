@@ -36,7 +36,8 @@ public class SearchState : State
             agent.SetDestination(UnityEngine.Random.insideUnitSphere * enemy.SearchRange);
         }
 
-        if(Vector3.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.RangeOfView)
+        if(Vector3.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.RangeOfView && 
+            !enemy.playerSneaking.IsHidden)
         {
             OnContinuePatrol();
         }
