@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName ="Abilities/Sneaking")]
 public class Sneaking : Ability
 {
     [SerializeField] private SneakingTriggerable laucher;

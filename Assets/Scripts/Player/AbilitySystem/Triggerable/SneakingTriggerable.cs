@@ -10,6 +10,7 @@ public class SneakingTriggerable : MonoBehaviour
     public void Invoke()
     {
         timeLeft = Duration;
+        Debug.Log("Hidden");
     }
 
     public void Update()
@@ -17,6 +18,7 @@ public class SneakingTriggerable : MonoBehaviour
         if(timeLeft <=0)
         {
             //clear;
+            Debug.Log("UnHidden");
         }
     }
 }

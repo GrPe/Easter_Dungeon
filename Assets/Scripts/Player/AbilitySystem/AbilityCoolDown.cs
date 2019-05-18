@@ -35,7 +35,7 @@ public class AbilityCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > nextReadyTime)
+        if(coolDownTimeLeft <= 0)
         {
             AbilityReady();
             if (Input.GetKeyDown(abilityKey))
@@ -63,7 +63,6 @@ public class AbilityCoolDown : MonoBehaviour
 
     private void ButtonTriggered()
     {
-        nextReadyTime = coolDownDuration + Time.deltaTime;
         coolDownTimeLeft = coolDownDuration;
         darkMask.enabled = true;
 
