@@ -29,9 +29,9 @@ public class PatrolState : State
             playerAgent.SetDestination(OnAchiveTheTarget());
         }
 
-        if (enemy.RangeOfView >= Vector3.Distance(enemy.transform.position, enemy.player.transform.position))
+        if (enemy.RangeOfView >= Vector3.Distance(enemy.transform.position, enemy.player.transform.position) &&
+            !enemy.playerSneaking.IsHidden)
         {
-            Debug.Log("I Found the player!");
             OnFoundPlayer();
         }
     }

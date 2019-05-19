@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
+    public SneakingTriggerable playerSneaking;
     public GameObject attackParticle;
 
     private NavMeshAgent agent;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         patrolSystem = GetComponent<PatrolSystem>();
+        playerSneaking = player.GetComponent<SneakingTriggerable>();
         InitStateMachine();
     }
     
@@ -128,6 +130,7 @@ public class Enemy : MonoBehaviour
 
     public void Stun(float time)
     {
+        agent.SetDestination(transform.position);
         StunTime = time;
         stateMachine.PerformTransition(Transition.StunTransition, true);
     }

@@ -26,7 +26,8 @@ public class AttackState : State
     public override void Act()
     {
         currentCooldownTime -= Time.deltaTime;
-        if(Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.AttackRange)
+        if(Vector3.Distance(enemy.transform.position, enemy.player.transform.position) <= enemy.AttackRange && 
+            !enemy.playerSneaking.IsHidden)
         {
             if(currentCooldownTime <= 0)
             {
