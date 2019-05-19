@@ -12,7 +12,6 @@ public class SneakingTriggerable : MonoBehaviour
     {
         timeLeft = Duration;
         IsHidden = true;
-        Debug.Log("Hidden");
     }
 
     public void Update()
@@ -22,7 +21,6 @@ public class SneakingTriggerable : MonoBehaviour
         {
             //clear;
             IsHidden = false;
-            Debug.Log("UnHidden");
         }
     }
 }
