@@ -16,8 +16,8 @@ public class StunState : State
         this.enemy = enemy;
     }
 
-    public override void OnCollision2DEnter(Collision2D collision)
-    {
+    public override void DoBeforeEntering()
+    { 
         stunTime = enemy.StunTime;
     }
 

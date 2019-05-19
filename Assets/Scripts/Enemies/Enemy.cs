@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
 
     public void Stun(float time)
     {
+        agent.SetDestination(transform.position);
         StunTime = time;
         stateMachine.PerformTransition(Transition.StunTransition, true);
     }

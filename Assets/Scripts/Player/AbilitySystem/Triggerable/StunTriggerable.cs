@@ -10,11 +10,12 @@ public class StunTriggerable : MonoBehaviour
     public void Invoke()
     {
         var colliders = Physics.OverlapSphere(transform.position, Range);
-
+        Debug.Log(colliders?.Length);
         foreach(var collider in colliders)
         {
             if(collider.tag == "Enemy")
             {
+                Debug.Log("Stun");
                 var enemy = collider.gameObject.GetComponent<Enemy>();
                 enemy.Stun(Duration);
             }
