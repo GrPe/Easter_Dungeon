@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SneakingObj
   m_EditorClassIdentifier: 
   Name: Sneaking
-  Sprite: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  Sprite: {fileID: 21300000, guid: 0d14929f3c201b043b7c30374596cc1d, type: 3}
   BaseCoolDown: 16
   laucher: {fileID: 0}
   duration: 4
