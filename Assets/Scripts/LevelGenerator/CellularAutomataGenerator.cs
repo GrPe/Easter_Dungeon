@@ -12,17 +12,19 @@ public enum AutomataRule
 public class CellularAutomataGenerator : Generator
 {
     private AutomataRule rule;
+    private int fulfillment;
 
-    public CellularAutomataGenerator(AutomataRule rule)
+    public CellularAutomataGenerator(AutomataRule rule, int fulfillment)
     {
         this.rule = rule;
+        this.fulfillment = fulfillment;
     }
 
     public bool[,] GenerateMaze(int x, int y)
     {
         bool[,] maze = new bool[x, y];
 
-        RandomFillTable(maze, 40);
+        RandomFillTable(maze);
 
         Generate(maze, 30);
 
@@ -80,7 +82,7 @@ public class CellularAutomataGenerator : Generator
         else return actual;
     }
 
-    private void RandomFillTable(bool[,] table, int fulfillment)
+    private void RandomFillTable(bool[,] table)
     {
         fulfillment %= 100;
 
