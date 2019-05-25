@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
-    public SneakingTriggerable playerSneaking;
+    [HideInInspector] public SneakingTriggerable playerSneaking;
     public GameObject attackParticle;
 
     private NavMeshAgent agent;
