@@ -50,24 +50,28 @@ public static class CellularMazeCleaner
             {
                 points.Enqueue(new Tuple<int, int>(x + 1, y));
                 cleaned[x + 1, y] = true;
+                foundCells++;
             }
             //down
             if (maze[x - 1, y] && cleaned[x - 1, y] == false)
             {
                 points.Enqueue(new Tuple<int, int>(x - 1, y));
                 cleaned[x - 1, y] = true;
+                foundCells++;
             }
             //left
             if (maze[x, y - 1] && cleaned[x, y - 1] == false)
             {
                 points.Enqueue(new Tuple<int, int>(x, y - 1));
                 cleaned[x, y - 1] = true;
+                foundCells++;
             }
             //right
             if (maze[x, y + 1] && cleaned[x, y + 1] == false)
             {
                 points.Enqueue(new Tuple<int, int>(x, y + 1));
                 cleaned[x, y + 1] = true;
+                foundCells++;
             }
         }
 
