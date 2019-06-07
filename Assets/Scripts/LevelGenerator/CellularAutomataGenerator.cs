@@ -58,7 +58,7 @@ public class CellularAutomataGenerator : Generator
 
     private bool Mazetric(int neighbors, bool actual)
     {
-        if (neighbors <= 0 && neighbors >= 5)
+        if (neighbors <= 0 || neighbors >= 5)
         {
             return false;
         }
@@ -71,7 +71,7 @@ public class CellularAutomataGenerator : Generator
 
     private bool Maze(int neighbors, bool actual)
     {
-        if (neighbors <= 0 && neighbors >= 6)
+        if (neighbors <= 0 || neighbors >= 6)
         {
             return false;
         }
