@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  distanceFromTarget: 18
+  distanceFromTarget: 32
 --- !u!114 &5512516097150646504
 MonoBehaviour:
   m_ObjectHideFlags: 0
