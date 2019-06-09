@@ -1075,11 +1075,11 @@ MonoBehaviour:
     title: Collect
     description: Collect Eggs!
     eggsToCollect: 4
-  player: {fileID: 0}
+  player: {fileID: 3602696705503768600}
   questInfo: {fileID: 1051996072901396877}
   description: {fileID: 1051996072030902398}
   progress: {fileID: 1051996073286573762}
-  endPoint: {fileID: 0}
+  endPoint: {fileID: 8283555916041640872}
 --- !u!1 &1051996072207133489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2633,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e20b13b65d93ce4eb9d8cb9e8b370fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3602696705503768600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7751193600913941518, guid: 79465a21c022bd645879382bff1583f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6516317320477152278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733ffa98df0297488663b6e132ffa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6815248829311388093
