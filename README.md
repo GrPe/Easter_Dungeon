@@ -1,5 +1,9 @@
 # Easter Dungeon
 
+## Special Thanks
+
+- [Tomek Gromadzki](https://github.com/TomGroSk)
+
 ## Tech
 
 - Unity 2019.1.0f2
