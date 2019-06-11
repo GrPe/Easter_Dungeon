@@ -32,7 +32,17 @@ public class PatrolState : State
         if (enemy.RangeOfView >= Vector3.Distance(enemy.transform.position, enemy.player.transform.position) &&
             !enemy.playerSneaking.IsHidden)
         {
-            OnFoundPlayer();
+
+            RaycastHit hit;
+            Vector3 direction = enemy.player.transform.position - enemy.transform.position;
+
+            if (Physics.Raycast(enemy.transform.position, direction.normalized, out hit, enemy.RangeOfView))
+            {
+                if(hit.collider.tag == "Player")
+                {
+                    OnFoundPlayer();
+                }
+            }
         }
     }
 }
