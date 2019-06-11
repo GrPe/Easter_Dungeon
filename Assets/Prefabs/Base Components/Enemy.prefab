@@ -111,11 +111,11 @@ MonoBehaviour:
   playerSneaking: {fileID: 0}
   attackParticle: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
     type: 3}
-  rangeOfView: 7
+  rangeOfView: 10.5
   attackRange: 2.5
   attackCooldown: 1.5
   searchTime: 5
-  searchRange: 5
+  searchRange: 6
 --- !u!195 &5442356559331946906
 NavMeshAgent:
   m_ObjectHideFlags: 0
