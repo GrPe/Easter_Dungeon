@@ -24,4 +24,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void OnSelectLevelClick(int level)
+    {
+        SceneManager.LoadScene(level + 3); // + (main, selectlevel and credits) 
+    }
 }
