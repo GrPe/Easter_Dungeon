@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public void OnSelectLevelClick()
     {
-        //todo
+        SceneManager.LoadScene("SelectLevelMenu");
     }
 
     public void OnCreditsClick()
     {
-        //todo
+        SceneManager.LoadScene("CreditsMenu");
     }
 
     public void OnExitClick()
@@ -21,6 +22,6 @@ public class Menu : MonoBehaviour
 
     public void OnReturnButtonClick()
     {
-        //todo
+        SceneManager.LoadScene("MainMenu");
     }
 }
