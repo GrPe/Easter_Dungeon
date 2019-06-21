@@ -23,7 +23,8 @@ public class GameOverManager : MonoBehaviour
 
     public void OnButtonMenuClick()
     {
-
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnButtonRetryClick()
