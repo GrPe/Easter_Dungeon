@@ -30,8 +30,8 @@ public class WinManager : MonoBehaviour
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (sceneIndex < SceneManager.sceneCount - 1)
-            SceneManager.LoadScene(sceneIndex);
+        if (sceneIndex < SceneManager.sceneCountInBuildSettings - 1)
+            SceneManager.LoadScene(sceneIndex + 1);
         else
             SceneManager.LoadScene("CreditsMenu");
     }
