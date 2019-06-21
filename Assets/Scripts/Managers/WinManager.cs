@@ -23,11 +23,13 @@ public class WinManager : MonoBehaviour
 
     public void OnButtonMenuClick()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainScene");
     }
 
     public void OnButtonNextClick()
     {
+        Time.timeScale = 1f;
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         if (sceneIndex < SceneManager.sceneCountInBuildSettings - 1)
