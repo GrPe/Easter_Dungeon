@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WinManager : MonoBehaviour
@@ -22,11 +23,16 @@ public class WinManager : MonoBehaviour
 
     public void OnButtonMenuClick()
     {
-
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OnButtonNextClick()
     {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        if (sceneIndex < SceneManager.sceneCount - 1)
+            SceneManager.LoadScene(sceneIndex);
+        else
+            SceneManager.LoadScene("CreditsMenu");
     }
 }
