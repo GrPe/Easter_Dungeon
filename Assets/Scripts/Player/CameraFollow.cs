@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class CameraFollow : MonoBehaviour
         transform.rotation = Quaternion.Euler(90, 0, 0);
     }
     
-    void Update()
+    void FixedUpdate()
     {
         transform.position = target.transform.position + new Vector3(0, distanceFromTarget, 0);
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

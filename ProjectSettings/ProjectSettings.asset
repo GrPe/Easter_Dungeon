@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 16
-  productGUID: 00000000000000000000000000000000
+  productGUID: 09906db30ba2f9143bf8d45dca538a90
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Grzegorz 'Envy' Perzanowski
   productName: Easter Dungeon
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -278,7 +278,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 8a42739f5320d8440bdf2f42c41c9945, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

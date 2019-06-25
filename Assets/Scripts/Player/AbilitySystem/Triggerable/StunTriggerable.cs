@@ -16,6 +16,11 @@ public class StunTriggerable : MonoBehaviour
         counter = timer;
     }
 
+    private void Awake()
+    {
+        particle.Stop();
+    }
+
     private void Update()
     {
         counter -= Time.deltaTime;
