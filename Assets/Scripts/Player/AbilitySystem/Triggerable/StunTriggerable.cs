@@ -6,16 +6,40 @@ public class StunTriggerable : MonoBehaviour
 {
     [HideInInspector] public float Duration;
     [HideInInspector] public float Range;
+    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private float timer = 1f;
+    private float counter;
+
+    private void Start()
+    {
+        particle.Stop();
+        counter = timer;
+    }
+
+    private void Update()
+    {
+        counter -= Time.deltaTime;
+
+        if (counter <= 0 && particle.isPlaying)
+        {
+            particle.Stop();
+        }
+    }
 
     public void Invoke()
     {
         var colliders = Physics.OverlapSphere(transform.position, Range);
-        Debug.Log(colliders?.Length);
+
+        if(particle != null)
+        {
+            particle.Play();
+            counter = timer;
+        }
+
         foreach(var collider in colliders)
         {
             if(collider.tag == "Enemy")
             {
-                Debug.Log("Stun");
                 var enemy = collider.gameObject.GetComponent<Enemy>();
                 enemy.Stun(Duration);
             }
