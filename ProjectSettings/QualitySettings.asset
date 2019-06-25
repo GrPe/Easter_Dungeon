@@ -75,7 +75,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
   - serializedVersion: 2
     name: Simple
     pixelLightCount: 1
@@ -110,7 +111,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
   - serializedVersion: 2
     name: Good
     pixelLightCount: 2
@@ -180,7 +182,8 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
   - serializedVersion: 2
     name: Fantastic
     pixelLightCount: 4
