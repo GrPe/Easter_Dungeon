@@ -1,5 +1,7 @@
 # Easter Dungeon
 
+- [Download](https://grzegorz-envy-perzanowski.itch.io/easter-dungeon)
+
 ## Special Thanks
 
 - [Tomek Gromadzki](https://github.com/TomGroSk)
